@@ -1,0 +1,173 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+
+const techPosts = [
+  {
+    title: "Building a Home Lab",
+    description: "My journey setting up a powerful home server",
+    date: "2024-01-15",
+    href: "/tech/home-lab"
+  },
+  {
+    title: "Network Security 101",
+    description: "Essential tips for securing your home network",
+    date: "2024-02-01",
+    href: "/tech/network-security"
+  }
+];
+
+const movieReviews = [
+  {
+    title: "2001: A Space Odyssey",
+    description: "Kubrick's masterpiece of space exploration",
+    date: "1968-04-02",
+    href: "/movies/2001-space-odyssey"
+  },
+  {
+    title: "Solaris",
+    description: "Tarkovsky's philosophical sci-fi journey",
+    date: "1972-03-18",
+    href: "/movies/solaris"
+  }
+];
+
+const astroPhotos = [
+  {
+    title: "Andromeda Galaxy",
+    description: "Captured with 8\" telescope",
+    date: "2023-12-15",
+    href: "/astrophotography/andromeda",
+    image: "/images/andromeda.jpg"
+  },
+  {
+    title: "Orion Nebula",
+    description: "Long exposure shot",
+    date: "2024-01-20",
+    href: "/astrophotography/orion",
+    image: "/images/orion.jpg"
+  }
+];
+---
+
+<Layout title="Liam's Office">
+  <main>
+    <h1 class="fade-in">Welcome to <span class="text-gradient">Liam's Office</span></h1>
+    <p class="tagline fade-in">
+      A space for tech experiments, classic sci-fi appreciation, and astrophotography
+    </p>
+
+    <section class="content-section fade-in">
+      <h2>Latest Tech Posts</h2>
+      <ul role="list" class="link-card-grid">
+        {
+          techPosts.map(post => (
+            <Card
+              href={post.href}
+              title={post.title}
+              body={post.description}
+            />
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="content-section fade-in">
+      <h2>Recent Movie Reviews</h2>
+      <ul role="list" class="link-card-grid">
+        {
+          movieReviews.map(review => (
+            <Card
+              href={review.href}
+              title={review.title}
+              body={review.description}
+            />
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="content-section fade-in">
+      <h2>Astrophotography</h2>
+      <ul role="list" class="link-card-grid">
+        {
+          astroPhotos.map(photo => (
+            <Card
+              href={photo.href}
+              title={photo.title}
+              body={photo.description}
+              image={photo.image}
+            />
+          ))
+        }
+      </ul>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .fade-in {
+    animation: fadeIn 0.8s ease-out;
+  }
+
+  main {
+    margin: auto;
+    padding: 1rem;
+    width: 800px;
+    max-width: calc(100% - 2rem);
+    color: white;
+    font-size: 20px;
+    line-height: 1.6;
+  }
+
+  h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    margin-bottom: 0.5em;
+  }
+
+  .tagline {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .content-section {
+    margin: 3rem 0;
+    opacity: 0;
+    animation-fill-mode: forwards;
+  }
+
+  .content-section:nth-child(1) {
+    animation-delay: 0.2s;
+  }
+
+  .content-section:nth-child(2) {
+    animation-delay: 0.4s;
+  }
+
+  .content-section:nth-child(3) {
+    animation-delay: 0.6s;
+  }
+
+  .content-section h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid rgba(var(--accent-light), 0.3);
+    padding-bottom: 0.5rem;
+  }
+</style>
